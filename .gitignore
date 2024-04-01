@@ -1,0 +1,4 @@
+/node_modules
+/.idea
+secrets.json
+secret.js
