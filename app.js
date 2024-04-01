@@ -3,10 +3,6 @@ const bodyParser = require('body-parser')
 const { API_URL, API_KEY } = require('./secret.js')
 const fetch = require('node-fetch')
 const app = express().use(bodyParser.json())
-
-let cash = {
-	data: []
-}
 const url = `${API_URL}recruitment/vacancies?page=1`
 const options = {
 	method: 'GET',
@@ -37,7 +33,7 @@ async function init() {
 	return posts
 }
 app.get('/', async (req, res) => {
-	const res = await init()
-	res.json(res)
+	const response = await init()
+	res.json(response)
 })
 app.listen(3000, () => console.log('[People force api] is listening'))
