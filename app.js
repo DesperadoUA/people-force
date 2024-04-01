@@ -36,4 +36,4 @@ app.get('/', async (req, res) => {
 	const response = await init()
 	res.json(response)
 })
-app.listen(3001, () => console.log('[People force api] is listening'))
+app.listen(10000, () => console.log('[People force api] is listening'))
