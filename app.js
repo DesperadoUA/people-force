@@ -1,8 +1,10 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const { API_URL, API_KEY } = require('./secret.js')
 const fetch = require('node-fetch')
 const app = express().use(bodyParser.json())
+app.use(cors())
 const options = {
 	method: 'GET',
 	headers: {
