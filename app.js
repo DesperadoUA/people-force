@@ -3,20 +3,21 @@ const bodyParser = require('body-parser')
 const { API_URL, API_KEY } = require('./secret.js')
 const fetch = require('node-fetch')
 const app = express().use(bodyParser.json())
+const options = {
+	method: 'GET',
+	headers: {
+		accept: 'application/x-www-form-urlencoded',
+		'X-API-KEY': API_KEY
+	}
+}
 async function fn(indexPage) {
 	const url = `${API_URL}recruitment/vacancies?page=${indexPage}`
-	const options = {
-		method: 'GET',
-		headers: {
-			accept: 'application/x-www-form-urlencoded',
-			'X-API-KEY': API_KEY
-		}
-	}
 	const res = await fetch(url, options)
 	const { data } = await res.json()
 	return data
 }
 async function init() {
+	const url = `${API_URL}recruitment/vacancies?page=1`
 	const res = await fetch(url, options)
 	const { data, metadata } = await res.json()
 	const pages = metadata.pagination.pages
