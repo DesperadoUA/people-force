@@ -13,6 +13,7 @@ const options = {
 	}
 }
 async function fn(indexPage) {
+	console.log(indexPage)
 	const url = `${API_URL}recruitment/vacancies?page=${indexPage}`
 	const res = await fetch(url, options)
 	const { data } = await res.json()
@@ -26,10 +27,8 @@ async function init() {
 	let store = data
 	const arr = new Array(parseInt(pages))
 	for await (let [index, value] of arr.entries()) {
-		if (index > 0) {
-			const res = await fn(index)
-			store = store.concat(res)
-		}
+		const res = await fn(index + 1)
+		if (index > 0) store = store.concat(res)
 	}
 	const posts = store.filter(item => item.state === 'opened')
 	return posts
