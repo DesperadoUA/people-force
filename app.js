@@ -13,7 +13,6 @@ const options = {
 	}
 }
 async function fn(indexPage) {
-	console.log(indexPage)
 	const url = `${API_URL}recruitment/vacancies?page=${indexPage}`
 	const res = await fetch(url, options)
 	const { data } = await res.json()
